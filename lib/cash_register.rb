@@ -11,7 +11,7 @@ class CashRegister
   end
 
   def add_item(title, price, quantity = 1)
-    @transaction << price
+    @transaction = price*quantity
     quantity.times {@items << title}
     if quantity > 1
       @total = @total + (price*quantity)
@@ -31,8 +31,7 @@ class CashRegister
   end
 
   def void_last_transaction
-    @transaction.each do |price|
-      @total = @total - price
+    @total = @total - @transaction
     end
   end
 
